@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText mEditText;
     private String[] names;
     private List<String> data;
-    private ArrayAdapter<String> arrayAdapter;
+    private listAdapter mlistAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
         data = new ArrayList<String>(Arrays.asList(names));
 
         //arrayAdapter = new ArrayAdapter<String>(this,android.R.layout_textview_item1, data);
-        arrayAdapter = new ArrayAdapter<String>(this,R.layout.list_item,R.id.a_textview_item, data);
+        mlistAdapter = new listAdapter(this,R.layout.list_item,R.id.a_textview_item, data);
 
-        mListView.setAdapter(arrayAdapter);
+        mListView.setAdapter(mlistAdapter);
 
     }
 
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         mEditText = (EditText) findViewById(R.id.a_main_et);
         String text = mEditText.getText().toString();
         data.add(text);
-        arrayAdapter.notifyDataSetChanged();
+        mlistAdapter.notifyDataSetChanged();
         Toast.makeText(view.getContext(),"Item added succesfully",Toast.LENGTH_SHORT).show();
         mEditText.setText("");
     }
